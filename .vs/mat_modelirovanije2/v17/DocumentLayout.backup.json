@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{48C597D1-1CBE-4890-BB2A-DB7D28F6C57E}|mat_modelirovanije2.csproj|c:\\users\\etoch\\source\\repos\\mat_modelirovanije2\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48C597D1-1CBE-4890-BB2A-DB7D28F6C57E}|mat_modelirovanije2.csproj|solutionrelative:mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48C597D1-1CBE-4890-BB2A-DB7D28F6C57E}|mat_modelirovanije2.csproj|c:\\users\\etoch\\source\\repos\\mat_modelirovanije2\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{48C597D1-1CBE-4890-BB2A-DB7D28F6C57E}|mat_modelirovanije2.csproj|solutionrelative:mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48C597D1-1CBE-4890-BB2A-DB7D28F6C57E}|mat_modelirovanije2.csproj|c:\\users\\etoch\\source\\repos\\mat_modelirovanije2\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48C597D1-1CBE-4890-BB2A-DB7D28F6C57E}|mat_modelirovanije2.csproj|solutionrelative:news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "MainWindow.axaml",
+              "ToolTip": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\MainWindow.axaml",
+              "RelativeToolTip": "MainWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T19:12:46.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\MainWindow.axaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\MainWindow.axaml.cs",
+              "RelativeToolTip": "MainWindow.axaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T19:12:45.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "News.cs",
+              "DocumentMoniker": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\News.cs",
+              "RelativeDocumentMoniker": "News.cs",
+              "ToolTip": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\News.cs",
+              "RelativeToolTip": "News.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T07:29:52.165Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

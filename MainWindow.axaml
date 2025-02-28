@@ -1,0 +1,164 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1020" d:DesignHeight="860"
+		Width="1020" Height="860" MinWidth="870" MinHeight="670"
+        x:Class="mat_modelirovanije2.MainWindow"
+        Title="mat_modelirovanije2"
+		x:CompileBindings="False">
+	<Grid
+		ShowGridLines="False"
+		RowDefinitions="auto,.3*,auto,2*,auto,3*,auto,4*,.3*"
+		ColumnDefinitions=".05*,0.3*,*,.05*">
+		<Panel
+			Grid.ColumnSpan="4"
+			Background="#e1f4c8">
+			<Grid
+				ColumnDefinitions="auto,20*,4*">
+				<Ellipse
+					Height="50" Fill="Green" Width="50" Margin="10 5"/>
+				<TextBlock
+					Text="логотип" FontSize="10" HorizontalAlignment="Center"
+					VerticalAlignment="Center"/>
+				<TextBox
+					Grid.Column="1" Margin="10 5" CornerRadius="18"
+					Background="White" VerticalContentAlignment="Center"
+					Height="40" Watermark="Введите для поиска"/>
+				
+			</Grid>
+		</Panel>
+		<TextBlock
+			Text="Сотрудники" Margin="2" FontSize="18" FontWeight="Bold"			
+			Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
+		<ScrollViewer
+			Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">			
+			<ListBox
+				Name="lbox_employee" Background="White">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel HorizontalAlignment="Left"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Panel
+							Background="Green" Width="150">
+							<StackPanel
+								Margin="10">
+								<TextBlock
+									FontSize="12" FontWeight="Bold"  Foreground="White" TextWrapping="WrapWithOverflow">
+									<Run Text="{Binding Lastname}"/>
+									<Run Text="{Binding Name}"/>
+									<Run Text="{Binding Patronymic}"/>
+								</TextBlock>
+								<TextBlock
+									Text="{Binding Job.Name}" Foreground="White" TextWrapping="WrapWithOverflow"
+									FontSize="10"/>
+								<TextBlock
+									Text="{Binding Email}" Foreground="White" TextWrapping="WrapWithOverflow"
+									FontSize="10"/>
+								<TextBlock
+									Text="{Binding Phone}" Foreground="White" TextWrapping="WrapWithOverflow"
+									FontSize="10"/>
+								<TextBlock
+									Text="{Binding Birthday}" Foreground="White" TextWrapping="WrapWithOverflow"
+									FontSize="10"/>
+							</StackPanel>
+							<Viewbox
+								Height="15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+								<Button
+									Content="📅" Background="Transparent"/>
+							</Viewbox>
+						</Panel>						
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
+
+		<TextBlock
+			Text="Новости" Margin="2" FontSize="18" FontWeight="Bold"
+			Grid.Column="2" Grid.Row="4" Grid.RowSpan="2"/>
+		<ScrollViewer
+			Grid.Column="2" Grid.Row="5" Grid.RowSpan="3">
+			<ListBox
+				Name="lbox_news" Background="White">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel HorizontalAlignment="Left"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Panel
+							Background="Green">
+							<StackPanel Margin="10" Width="300">
+								<TextBlock
+									Text="{Binding title}"
+									FontSize="12" FontWeight="Bold"
+									Foreground="White" TextWrapping="WrapWithOverflow"/>
+								<TextBlock
+									Text="{Binding description}"
+									FontSize="9"
+									Foreground="White" TextWrapping="WrapWithOverflow"/>
+								<TextBlock
+									Text="{Binding date}" FontSize="9" FontWeight="Bold" Margin="0 15 0 0"
+									Foreground="White" TextWrapping="WrapWithOverflow"/>
+							</StackPanel>							
+						</Panel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
+
+			
+		<TextBlock 
+			Text="Календарь событий" Margin="2" FontSize="18" FontWeight="Bold"
+			Grid.Row="4" Grid.Column="1"/>
+		<Viewbox
+			Margin="1 25 1 5"
+			Stretch="Uniform"
+			Grid.Row="5" Grid.Column="1">
+			<Calendar/>
+		</Viewbox>
+
+		<TextBlock
+			Text="События" Margin="2" FontSize="18" FontWeight="Bold"
+			Grid.Column="1" Grid.Row="6"/>
+		<ScrollViewer
+			Grid.Column="1" Grid.Row="7">
+			<ListBox
+				Name="lbox_events" Background="White">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Panel
+							Background="Green" Width="180">
+							<StackPanel
+								Margin="10">
+								<TextBlock
+									Text="{Binding Name}"
+									FontSize="12" FontWeight="Bold"  Foreground="White" TextWrapping="WrapWithOverflow"/>
+								<TextBlock
+									Text="{Binding Description}" Foreground="White" TextWrapping="WrapWithOverflow"
+									FontSize="10" Margin="0 0 0 10"/>
+								<TextBlock
+									HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+									Foreground="White" Margin="0 0 0 10"
+									TextWrapping="WrapWithOverflow"
+									FontSize="10">
+									<Run Text="{Binding IdOrganisatorNavigation.Lastname}"/>
+									<Run Text="{Binding IdOrganisatorNavigation.Name}"/>
+									<Run Text="{Binding IdOrganisatorNavigation.Patronymic}"/>
+								</TextBlock>
+									<TextBlock
+										Text="{Binding DatetimeStart, StringFormat='📅 {0}'}" Foreground="White"
+										TextWrapping="WrapWithOverflow"
+										FontSize="10"/>
+								</StackPanel>
+						</Panel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</ScrollViewer>
+	</Grid>
+</Window>
