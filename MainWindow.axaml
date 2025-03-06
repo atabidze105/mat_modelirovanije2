@@ -119,7 +119,8 @@
 			Margin="1 25 1 5"
 			Stretch="Uniform"
 			Grid.Row="5" Grid.Column="1">
-			<Calendar/>
+			<Calendar
+				Name="calendar_custom"/>
 		</Viewbox>
 
 		<TextBlock

@@ -33,7 +33,8 @@
               "ToolTip": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\MainWindow.axaml",
               "RelativeToolTip": "MainWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-28T19:12:46.599Z"
+              "WhenOpened": "2025-02-28T19:12:46.599Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -43,7 +44,7 @@
               "RelativeDocumentMoniker": "MainWindow.axaml.cs",
               "ToolTip": "C:\\Users\\etoch\\source\\repos\\mat_modelirovanije2\\MainWindow.axaml.cs",
               "RelativeToolTip": "MainWindow.axaml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAA4wE8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-28T19:12:45.905Z",
               "EditorCaption": ""
