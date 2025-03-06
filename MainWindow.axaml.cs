@@ -55,51 +55,79 @@ namespace mat_modelirovanije2
 
         private void BrushesCalendar()
         {
+            List<Workingcalendar> redDates = DBContext.Workingcalendars.Where(x => x.Isworkingday == false && x.Exceptiondate.Month == calendar_custom.DisplayDate.Month && x.Exceptiondate.Year == calendar_custom.DisplayDate.Year).ToList(); //Праздничные дни этого месяца
+            List<Event> thisMonthEvents =_Events.Where(x => x.DatetimeStart.Month == calendar_custom.DisplayDate.Month && x.DatetimeStart.Year == calendar_custom.DisplayDate.Year ).ToList(); //События этого месяца
+            List<Employee> bdayEmployees = _Employees.Where(x => x.Birthday.Month == calendar_custom.DisplayDate.Month).ToList(); //Именинники этого месяца
+            DateTime dateNow = calendar_custom.DisplayDate;
+
+
             foreach (var child in calendar_custom.GetVisualDescendants())
             {
                 if (child is CalendarDayButton dayButton)
                 {
-                    var dateNow = (calendar_custom as Calendar).DisplayDate;
+                    dayButton.Background = Brushes.Transparent;
+                    dayButton.Foreground = Brushes.Black;
 
-                    string vv = dayButton.Content!.ToString()!;
-
+                    string dayBtnContent = dayButton.Content!.ToString()!;
 
                     try
                     {
-                        DateOnly nowDate = new DateOnly(dateNow.Year, dateNow.Month, int.Parse(vv));
+                        DateOnly nowDate = new DateOnly(dateNow.Year, dateNow.Month, int.Parse(dayBtnContent));
 
                         List<DateOnly> wCalendarDates = new();
 
-                        foreach (Workingcalendar date in DBContext.Workingcalendars.Where(x => x.Isworkingday == false).ToList())
+                        foreach (Workingcalendar date in redDates)
                             wCalendarDates.Add(date.Exceptiondate);
+
+
+                        //🎂
+                        if (bdayEmployees.Where(x => x.Birthday.Day == nowDate.Day).Count() > 0)
+                        {
+                            dayButton.Content += "🎂";
+
+                            Flyout F = new Flyout();
+
+                            foreach (Employee employee in bdayEmployees.ToList())
+                                if (employee.Birthday.Day == nowDate.Day)
+                                    F.Content += $"{employee.Lastname} {employee.Name} {employee.Patronymic} \n";
+
+                            dayButton.Flyout = F;
+                        }
+
+                        switch (thisMonthEvents.Where(x => x.DatetimeStart.Day == nowDate.Day).ToList().Count)
+                        {
+                            default:
+                                dayButton.Background = Brushes.Red;
+                                break;
+                            case 1:
+                            case 2:
+                                dayButton.Background = Brushes.Green;
+                                break;
+                            case 3:
+                            case 4:
+                                dayButton.Background = Brushes.Yellow;
+                                break;
+                            case 0:
+                                dayButton.Background = Brushes.Transparent;
+                                break;
+                        }
 
                         if (wCalendarDates.Contains(nowDate))
                         {
-                            //🎂
-                            if (_Employees.Where(x => x.Birthday.Month == nowDate.Month && x.Birthday.Day == nowDate.Day).ToList().Count() > 0)
-                            {
-                                dayButton.Content += "🎂";
+                            dayButton.BorderBrush = Brushes.DarkRed;
+                            dayButton.BorderThickness = new Avalonia.Thickness(1);
 
-                                Flyout F = new Flyout();
-
-                                foreach (Employee employee in _Employees.Where(x => x.Birthday.Month == nowDate.Month && x.Birthday.Day == nowDate.Day).ToList())
-                                    F.Content += $"{employee.Lastname} {employee.Name} {employee.Patronymic} \n";
-
-                                dayButton.Flyout = F;
-                            }
-
-                            dayButton.Flyout = new Flyout { Content = "" };
-                            dayButton.Background = Brushes.Red;
                         }
                         else
                         {
-                            dayButton.Background = Brushes.LightGray;
-                            dayButton.Foreground = Brushes.Black;
+                            dayButton.BorderBrush = Brushes.Transparent;
+                            dayButton.BorderThickness = new Avalonia.Thickness(0);
                         }
+
                     }
                     catch
                     {
-                        dayButton.Background = Brushes.LightGray;
+                        dayButton.Background = Brushes.Transparent;
                         dayButton.Foreground = Brushes.Black;
                     }
                 }
