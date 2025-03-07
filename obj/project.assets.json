@@ -6359,11 +6359,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\prdb\\Desktop\\matmodel\\mat_modelirovanije2\\mat_modelirovanije2.csproj",
+      "projectUniqueName": "C:\\Users\\prdb\\Desktop\\mat_modelirovanije2\\mat_modelirovanije2.csproj",
       "projectName": "mat_modelirovanije2",
-      "projectPath": "C:\\Users\\prdb\\Desktop\\matmodel\\mat_modelirovanije2\\mat_modelirovanije2.csproj",
+      "projectPath": "C:\\Users\\prdb\\Desktop\\mat_modelirovanije2\\mat_modelirovanije2.csproj",
       "packagesPath": "C:\\Users\\prdb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\prdb\\Desktop\\matmodel\\mat_modelirovanije2\\obj\\",
+      "outputPath": "C:\\Users\\prdb\\Desktop\\mat_modelirovanije2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6378,6 +6378,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\prdb\\.nuget\\packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6394,7 +6395,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -6471,7 +6472,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -22,6 +22,9 @@ namespace mat_modelirovanije2
         private List<Event> _Events = DBContext.Events.Include(x => x.IdOrganisatorNavigation).ToList();
         private List<News> _News = new List<News>();
         private DispatcherTimer _DispatcherTimer = new DispatcherTimer() { Interval = new System.TimeSpan(0,0,15) };
+        private List<Employee> _EmployeesFound = new();
+        private List<Event> _EventsFound = new();
+        private List<News> _NewsFound = new();
 
 
 
@@ -39,6 +42,13 @@ namespace mat_modelirovanije2
 
             calendar_custom.Loaded += OnCalendarLoaded;
             calendar_custom.DisplayDateChanged += CustomCalendar_DisplayDateChanged;
+            calendar_custom.SelectedDatesChanged += Calendar_custom_SelectedDatesChanged;
+        }
+
+
+        private void Calendar_custom_SelectedDatesChanged(object? sender, SelectionChangedEventArgs e)
+        {
+            BrushesCalendar();
         }
 
         private void NewsUpdate()
@@ -59,23 +69,37 @@ namespace mat_modelirovanije2
             List<Event> thisMonthEvents =_Events.Where(x => x.DatetimeStart.Month == calendar_custom.DisplayDate.Month && x.DatetimeStart.Year == calendar_custom.DisplayDate.Year ).ToList(); //События этого месяца
             List<Employee> bdayEmployees = _Employees.Where(x => x.Birthday.Month == calendar_custom.DisplayDate.Month).ToList(); //Именинники этого месяца
             DateTime dateNow = calendar_custom.DisplayDate;
+            int dayCheck = 0; //индикатор для проверки на первое число в начале мемсяца
 
 
             foreach (var child in calendar_custom.GetVisualDescendants())
             {
                 if (child is CalendarDayButton dayButton)
                 {
+                    string s1 = dayButton.Content.ToString().Replace("🎂", "");
+                    dayButton.Content = s1;
+                    dayButton.CornerRadius = new Avalonia.CornerRadius(5);
                     dayButton.Background = Brushes.Transparent;
                     dayButton.Foreground = Brushes.Black;
+                    dayButton.IsVisible = true;
+                    ToolTip.SetTip(dayButton, null);
 
                     string dayBtnContent = dayButton.Content!.ToString()!;
 
                     try
                     {
+                        if (Convert.ToInt32(dayButton.Content) == 1)
+                            dayCheck++;
+
+                        if (dayCheck == 0 || dayCheck == 2)
+                            dayButton.IsVisible = false;                        
+                    
+
                         DateOnly nowDate = new DateOnly(dateNow.Year, dateNow.Month, int.Parse(dayBtnContent));
 
                         List<DateOnly> wCalendarDates = new();
 
+                        //Выходные
                         foreach (Workingcalendar date in redDates)
                             wCalendarDates.Add(date.Exceptiondate);
 
@@ -83,17 +107,21 @@ namespace mat_modelirovanije2
                         //🎂
                         if (bdayEmployees.Where(x => x.Birthday.Day == nowDate.Day).Count() > 0)
                         {
+                            string s = "";
+                            ToolTip toolTip = new ToolTip();    
+                            
                             dayButton.Content += "🎂";
-
-                            Flyout F = new Flyout();
 
                             foreach (Employee employee in bdayEmployees.ToList())
                                 if (employee.Birthday.Day == nowDate.Day)
-                                    F.Content += $"{employee.Lastname} {employee.Name} {employee.Patronymic} \n";
+                                    s += $"{employee.Lastname}\n";
+                                    //s += $"{employee.Lastname} {employee.Name} {employee.Patronymic} \n";
 
-                            dayButton.Flyout = F;
+                            ToolTip.SetTip(dayButton, s);
+
                         }
 
+                        //События
                         switch (thisMonthEvents.Where(x => x.DatetimeStart.Day == nowDate.Day).ToList().Count)
                         {
                             default:
@@ -112,21 +140,21 @@ namespace mat_modelirovanije2
                                 break;
                         }
 
+                        //Выходные (продолжение)
                         if (wCalendarDates.Contains(nowDate))
                         {
                             dayButton.BorderBrush = Brushes.DarkRed;
                             dayButton.BorderThickness = new Avalonia.Thickness(1);
-
                         }
                         else
                         {
                             dayButton.BorderBrush = Brushes.Transparent;
                             dayButton.BorderThickness = new Avalonia.Thickness(0);
-                        }
-
+                        }                        
                     }
                     catch
                     {
+                        dayButton.BorderBrush = Brushes.Transparent;
                         dayButton.Background = Brushes.Transparent;
                         dayButton.Foreground = Brushes.Black;
                     }
@@ -137,6 +165,44 @@ namespace mat_modelirovanije2
         private void OnCalendarLoaded(object sender, EventArgs e)
         {
             BrushesCalendar();
+        }
+
+        private void TextBox_KeyUp(object? sender, Avalonia.Input.KeyEventArgs e)
+        {
+            if (tbox_searchbar != null) 
+            {
+                if (tbox_searchbar.Text != "")
+                {
+                    string pattern = tbox_searchbar.Text.Trim().ToLower();
+                    _EmployeesFound.Clear();
+                    _EventsFound.Clear();
+                    _NewsFound.Clear();
+
+                    _EmployeesFound.AddRange(_EmployeesFound.Where(x =>
+                    x.Lastname.Trim().ToLower().Contains(pattern) ||
+                    x.Name.Trim().ToLower().Contains(pattern) ||
+                    x.Patronymic.Trim().ToLower().Contains(pattern) ||
+                    $"{x.Lastname.Trim().ToLower().Contains(pattern)} {x.Name.Trim().ToLower().Contains(pattern)} {x.Patronymic.Trim().ToLower().Contains(pattern)}".Contains(pattern)));
+
+                    _EventsFound.AddRange(_Events.Where(x =>
+                    x.Name.Trim().ToLower().Contains(pattern)));
+
+                    _NewsFound.AddRange(_News.Where(x =>
+                    x.title.Trim().ToLower().Contains(pattern)));
+
+
+                    lbox_employee.ItemsSource = _EmployeesFound.ToList();
+                    lbox_events.ItemsSource = _EventsFound.ToList();
+                    lbox_news.ItemsSource = _NewsFound.ToList();
+                }
+                else 
+                {
+                    lbox_employee.ItemsSource = _Employees.ToList();
+                    lbox_events.ItemsSource = _Events.ToList();
+                    NewsUpdate();
+                }
+            }
+
         }
     }
 }

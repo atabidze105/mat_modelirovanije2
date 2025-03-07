@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sWzDVkG+BGw=",
+  "dgSpecHash": "byE1AQPFs8k=",
   "success": true,
-  "projectFilePath": "C:\\Users\\prdb\\Desktop\\matmodel\\mat_modelirovanije2\\mat_modelirovanije2.csproj",
+  "projectFilePath": "C:\\Users\\prdb\\Desktop\\mat_modelirovanije2\\mat_modelirovanije2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\prdb\\.nuget\\packages\\avalonia\\11.2.5\\avalonia.11.2.5.nupkg.sha512",
     "C:\\Users\\prdb\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.22045.20230930\\avalonia.angle.windows.natives.2.1.22045.20230930.nupkg.sha512",

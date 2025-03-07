@@ -23,14 +23,14 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = mat_modelirovanije2
-build_property.ProjectDir = C:\Users\prdb\Desktop\matmodel\mat_modelirovanije2\
+build_property.ProjectDir = C:\Users\prdb\Desktop\mat_modelirovanije2\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/prdb/Desktop/matmodel/mat_modelirovanije2/App.axaml]
+[C:/Users/prdb/Desktop/mat_modelirovanije2/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/prdb/Desktop/matmodel/mat_modelirovanije2/MainWindow.axaml]
+[C:/Users/prdb/Desktop/mat_modelirovanije2/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

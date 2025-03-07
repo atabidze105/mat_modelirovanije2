@@ -22,9 +22,11 @@
 					Text="логотип" FontSize="10" HorizontalAlignment="Center"
 					VerticalAlignment="Center"/>
 				<TextBox
+					Name="tbox_searchbar"
 					Grid.Column="1" Margin="10 5" CornerRadius="18"
 					Background="White" VerticalContentAlignment="Center"
-					Height="40" Watermark="Введите для поиска"/>
+					Height="40" Watermark="Введите для поиска"
+					KeyUp="TextBox_KeyUp"/>
 				
 			</Grid>
 		</Panel>
