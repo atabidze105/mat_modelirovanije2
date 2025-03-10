@@ -7,6 +7,12 @@
         x:Class="mat_modelirovanije2.MainWindow"
         Title="mat_modelirovanije2"
 		x:CompileBindings="False">
+
+	<Window.Styles>
+		<Style Selector="CalendarDayButton /template/ Border">
+			<Setter Property="CornerRadius" Value="25"></Setter>
+		</Style>
+	</Window.Styles>
 	<Grid
 		ShowGridLines="False"
 		RowDefinitions="auto,.3*,auto,2*,auto,3*,auto,4*,.3*"
@@ -86,6 +92,10 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</ScrollViewer>
+		<TextBlock
+			Name="tblock_employeeNotFound"
+			Text="Ничего не найдено" IsVisible="False"
+			Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"/>
 
 		<TextBlock
 			Text="Новости" Margin="2" FontSize="18" FontWeight="Bold"
@@ -121,8 +131,12 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</ScrollViewer>
+		<TextBlock
+			Name="tblock_newsNotFound"
+			Text="Ничего не найдено" IsVisible="False"
+			Grid.Column="2" Grid.Row="5" Grid.RowSpan="3"/>
 
-			
+
 		<TextBlock 
 			Text="Календарь событий" Margin="2" FontSize="18" FontWeight="Bold"
 			Grid.Row="4" Grid.Column="1"/>
@@ -172,5 +186,9 @@
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</ScrollViewer>
+		<TextBlock
+			Name="tblock_eventsNotFound"
+			Text="Ничего не найдено" IsVisible="False"
+			Grid.Column="1" Grid.Row="7"/>
 	</Grid>
 </Window>

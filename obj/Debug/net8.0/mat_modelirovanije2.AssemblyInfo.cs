@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mat_modelirovanije2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9b385216100d94815e9865ed65619966e5bc597")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2c4d6de5cb9697d997b83ad9147b9b2fe2ab7ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("mat_modelirovanije2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mat_modelirovanije2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

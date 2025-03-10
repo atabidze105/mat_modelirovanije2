@@ -81,8 +81,10 @@ namespace mat_modelirovanije2
                 if (child is CalendarDayButton dayButton)
                 {
                     string s1 = dayButton.Content.ToString().Replace("🎂", "");
+
                     dayButton.Content = s1;
-                    dayButton.CornerRadius = new Avalonia.CornerRadius(5);
+                    dayButton.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                    dayButton.VerticalAlignment= Avalonia.Layout.VerticalAlignment.Center;
                     dayButton.Background = Brushes.Transparent;
                     dayButton.Foreground = Brushes.Black;
                     dayButton.IsVisible = true;
@@ -140,6 +142,7 @@ namespace mat_modelirovanije2
                                 break;
                             case 0:
                                 dayButton.Background = Brushes.Transparent;
+                                
                                 break;
                         }
 
@@ -153,6 +156,7 @@ namespace mat_modelirovanije2
                         {
                             dayButton.BorderBrush = Brushes.Transparent;
                             dayButton.BorderThickness = new Avalonia.Thickness(0);
+                            
                         }                        
                     }
                     catch
@@ -222,6 +226,9 @@ namespace mat_modelirovanije2
                 lbox_events.ItemsSource = _Events.ToList();
                 NewsUpdate();
             }
+            tblock_employeeNotFound.IsVisible = lbox_employee.ItemCount > 0? false : true;
+            tblock_newsNotFound.IsVisible = lbox_news.ItemCount > 0? false : true;
+            tblock_eventsNotFound.IsVisible = lbox_events.ItemCount > 0? false : true;
         }
     }
 }

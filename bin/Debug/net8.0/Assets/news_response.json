@@ -38,5 +38,13 @@
     "imagePath": "https://192.168.1.85:5000/images/7.jpg",
     "link": "https://rosavtodor.gov.ru/press-center/news?page=2",
     "date": "2024-05-22"
+  },
+  {
+    "id": 8,
+    "title": "НОВАЯ НОВОСТЬ",
+    "description": "Описание новой новости",
+    "imagePath": "https://192.168.1.85:5000/images/7.jpg",
+    "link": "https://rosavtodor.gov.ru/press-center/news?page=2",
+    "date": "2025-03-10"
   }
 ]
