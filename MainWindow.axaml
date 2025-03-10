@@ -36,10 +36,12 @@
 		<ScrollViewer
 			Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">			
 			<ListBox
+				ScrollViewer.HorizontalScrollBarVisibility="Auto"
+				ScrollViewer.VerticalScrollBarVisibility="Disabled"
 				Name="lbox_employee" Background="White">
 				<ListBox.ItemsPanel>
 					<ItemsPanelTemplate>
-						<WrapPanel HorizontalAlignment="Left"/>
+						<StackPanel Orientation="Horizontal"/>
 					</ItemsPanelTemplate>
 				</ListBox.ItemsPanel>
 				<ListBox.ItemTemplate>
@@ -47,7 +49,7 @@
 						<Panel
 							Background="Green" Width="150">
 							<StackPanel
-								Margin="10">
+								Margin="9">
 								<TextBlock
 									FontSize="12" FontWeight="Bold"  Foreground="White" TextWrapping="WrapWithOverflow">
 									<Run Text="{Binding Lastname}"/>
@@ -56,21 +58,28 @@
 								</TextBlock>
 								<TextBlock
 									Text="{Binding Job.Name}" Foreground="White" TextWrapping="WrapWithOverflow"
-									FontSize="10"/>
+									FontSize="9"/>
 								<TextBlock
 									Text="{Binding Email}" Foreground="White" TextWrapping="WrapWithOverflow"
-									FontSize="10"/>
+									FontSize="9"/>
 								<TextBlock
 									Text="{Binding Phone}" Foreground="White" TextWrapping="WrapWithOverflow"
-									FontSize="10"/>
+									FontSize="9"/>
 								<TextBlock
-									Text="{Binding Birthday}" Foreground="White" TextWrapping="WrapWithOverflow"
-									FontSize="10"/>
+									Text="{Binding BirthdayDate}" Foreground="White" TextWrapping="WrapWithOverflow"
+									FontSize="9"/>
 							</StackPanel>
 							<Viewbox
 								Height="15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
 								<Button
-									Content="📅" Background="Transparent"/>
+									Content="📅" Background="Transparent" IsEnabled="True">
+									<Button.Flyout>
+										<Flyout>
+											<TextBlock
+												Text="{Binding VCard}"/>
+										</Flyout>
+									</Button.Flyout>
+								</Button>
 							</Viewbox>
 						</Panel>						
 					</DataTemplate>

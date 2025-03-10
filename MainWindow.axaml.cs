@@ -54,8 +54,12 @@ namespace mat_modelirovanije2
         private void NewsUpdate()
         {
             _News.Clear();
-            //_News = JsonConvert.DeserializeObject<List<News>>(File.ReadAllText("Assets/news_response.json"));
-            lbox_news.ItemsSource = _News.ToList();
+            _News = JsonConvert.DeserializeObject<List<News>>(File.ReadAllText("Assets/news_response.json"));
+
+            if (tbox_searchbar.Text == "" || tbox_searchbar.Text == null)
+                lbox_news.ItemsSource = _News.ToList();
+            else
+                lbox_news.ItemsSource = _News.Where(x => x.title.Trim().ToLower().Contains(tbox_searchbar.Text.Trim().ToLower()));
         }
 
         private void CustomCalendar_DisplayDateChanged(object? sender, CalendarDateChangedEventArgs e)
@@ -115,7 +119,6 @@ namespace mat_modelirovanije2
                             foreach (Employee employee in bdayEmployees.ToList())
                                 if (employee.Birthday.Day == nowDate.Day)
                                     s += $"{employee.Lastname}\n";
-                                    //s += $"{employee.Lastname} {employee.Name} {employee.Patronymic} \n";
 
                             ToolTip.SetTip(dayButton, s);
 
@@ -171,38 +174,54 @@ namespace mat_modelirovanije2
         {
             if (tbox_searchbar != null) 
             {
-                if (tbox_searchbar.Text != "")
-                {
-                    string pattern = tbox_searchbar.Text.Trim().ToLower();
-                    _EmployeesFound.Clear();
-                    _EventsFound.Clear();
-                    _NewsFound.Clear();
-
-                    _EmployeesFound.AddRange(_EmployeesFound.Where(x =>
-                    x.Lastname.Trim().ToLower().Contains(pattern) ||
-                    x.Name.Trim().ToLower().Contains(pattern) ||
-                    x.Patronymic.Trim().ToLower().Contains(pattern) ||
-                    $"{x.Lastname.Trim().ToLower().Contains(pattern)} {x.Name.Trim().ToLower().Contains(pattern)} {x.Patronymic.Trim().ToLower().Contains(pattern)}".Contains(pattern)));
-
-                    _EventsFound.AddRange(_Events.Where(x =>
-                    x.Name.Trim().ToLower().Contains(pattern)));
-
-                    _NewsFound.AddRange(_News.Where(x =>
-                    x.title.Trim().ToLower().Contains(pattern)));
-
-
-                    lbox_employee.ItemsSource = _EmployeesFound.ToList();
-                    lbox_events.ItemsSource = _EventsFound.ToList();
-                    lbox_news.ItemsSource = _NewsFound.ToList();
-                }
-                else 
-                {
-                    lbox_employee.ItemsSource = _Employees.ToList();
-                    lbox_events.ItemsSource = _Events.ToList();
-                    NewsUpdate();
-                }
+                Searching();
             }
+        }
 
+        private void Searching()
+        {
+            if (tbox_searchbar.Text != "" && tbox_searchbar.Text != null )
+            {
+                string pattern = tbox_searchbar.Text.Trim().ToLower();
+                _EmployeesFound.Clear();
+                _EventsFound.Clear();
+                _NewsFound.Clear();
+
+                _EmployeesFound.AddRange(_Employees.Where(x =>
+                x.Lastname.Trim().ToLower().Contains(pattern) ||
+                x.Name.Trim().ToLower().Contains(pattern) ||
+                x.Patronymic.Trim().ToLower().Contains(pattern) ||
+                $"{x.Lastname} {x.Name} {x.Patronymic}".Contains(pattern) ||
+                x.Job.Name.Trim().ToLower().Contains(pattern) ||
+                x.Email.Trim().ToLower().Contains(pattern) ||
+                x.Phone.Trim().ToLower().Contains(pattern) ||
+                Convert.ToString(x.Birthday).Trim().ToLower().Contains(pattern)));
+
+                _EventsFound.AddRange(_Events.Where(x =>
+                x.Name.Trim().ToLower().Contains(pattern) ||
+                x.Description.Trim().ToLower().Contains(pattern) ||
+                x.IdOrganisatorNavigation.Lastname.Trim().ToLower().Contains(pattern) ||
+                x.IdOrganisatorNavigation.Name.Trim().ToLower().Contains(pattern) ||
+                x.IdOrganisatorNavigation.Patronymic.Trim().ToLower().Contains(pattern) ||
+                $"{x.IdOrganisatorNavigation.Lastname} {x.IdOrganisatorNavigation.Name} {x.IdOrganisatorNavigation.Patronymic}".Contains(pattern) ||
+                Convert.ToString(x.DatetimeStart).Trim().ToLower().Contains(pattern)));
+
+                _NewsFound.AddRange(_News.Where(x =>
+                x.title.Trim().ToLower().Contains(pattern) ||
+                x.description.Trim().ToLower().Contains(pattern) ||
+                x.date.Trim().ToLower().Contains(pattern)));
+
+
+                lbox_employee.ItemsSource = _EmployeesFound.ToList();
+                lbox_events.ItemsSource = _EventsFound.ToList();
+                lbox_news.ItemsSource = _NewsFound.ToList();
+            }
+            else
+            {
+                lbox_employee.ItemsSource = _Employees.ToList();
+                lbox_events.ItemsSource = _Events.ToList();
+                NewsUpdate();
+            }
         }
     }
 }
